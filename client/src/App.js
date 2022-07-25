@@ -81,6 +81,87 @@ function App() {
         }
         return array;
     }
+
+    const shuffled = shuffle(backendWord);
+    // console.log(shuffled);
+
+    // --------------------------------------------
+
+    return (
+        <div className="App">
+            {/* 1- Header */}
+            <h1>English Quiz</h1>
+            {/* 2- progress */}
+            <div className="progress-bar-holder">
+                <div
+                    className="progress-bar"
+                    style={{ width: currentQuestion * 40.5 }}
+                ></div>
+            </div>
+            {showFinalResults ? (
+                /* 4- Final Results */
+                <div className="final-result">
+                    <h1>Final Results</h1>
+                    <h2>{score} out of 10 correct</h2>
+                    <h2>Rank : ({(score / 10) * 100})</h2>
+                    <button onClick={() => restartQuiz()}>Restart Quiz</button>
+                </div>
+            ) : (
+                /* 3- Quiz card */
+                <div className="q-card">
+                    <h3>
+                        Question {currentQuestion + 1} out of {10}
+                    </h3>
+                    <h3 className="q-text">
+                        Which part of speech is "
+                        <span>{backendWord[currentQuestion].word}</span>"
+                    </h3>
+                    <ul>
+                        <li
+                            onClick={() =>
+                                ansClicked(
+                                    backendWord[currentQuestion].pos,
+                                    "noun"
+                                )
+                            }
+                        >
+                            noun
+                        </li>
+                        <li
+                            onClick={() =>
+                                ansClicked(
+                                    backendWord[currentQuestion].pos,
+                                    "verb"
+                                )
+                            }
+                        >
+                            verb
+                        </li>
+                        <li
+                            onClick={() =>
+                                ansClicked(
+                                    backendWord[currentQuestion].pos,
+                                    "adjective"
+                                )
+                            }
+                        >
+                            adjective
+                        </li>
+                        <li
+                            onClick={() =>
+                                ansClicked(
+                                    backendWord[currentQuestion].pos,
+                                    "adverb"
+                                )
+                            }
+                        >
+                            adverb
+                        </li>
+                    </ul>
+                </div>
+            )}
+        </div>
+    );
 }
 
 export default App;
