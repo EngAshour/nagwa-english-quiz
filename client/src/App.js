@@ -56,7 +56,6 @@ function App() {
         } else {
             setFinalResults(true);
         }
-        console.log(score);
     };
 
     const restartQuiz = () => {
@@ -64,7 +63,7 @@ function App() {
         setCurrentQuestion(0);
         setFinalResults(false);
     };
-
+    // shuffle the array to generate random word
     function shuffle(array) {
         let currentIndex = array.length,
             randomIndex;
@@ -81,10 +80,22 @@ function App() {
         }
         return array;
     }
+    shuffle(backendWord);
+    //the tracking rank helper function
+    const ranking = [];
+    function calculateSourceRank(scoreSeries, scoreNew) {
+        for (let i = 0; i < scoreSeries.length; i++) {
+            if (scoreSeries[i] <= scoreNew * 10) {
+                ranking.push(scoreSeries[i]);
+            }
+        }
+    }
+    calculateSourceRank(backendRank, score);
+    console.log(Math.round((ranking.length / 30) * 100 * 100) / 100);
 
-    const shuffled = shuffle(backendWord);
-    // console.log(shuffled);
-
+    const progressStyle = {
+        width: `${(currentQuestion + 1) * 10}%`,
+    };
     // --------------------------------------------
 
     return (
@@ -92,18 +103,19 @@ function App() {
             {/* 1- Header */}
             <h1>English Quiz</h1>
             {/* 2- progress */}
+            <h2 className="score-mid-quiz">{score} out of 10 correct !</h2>
             <div className="progress-bar-holder">
-                <div
-                    className="progress-bar"
-                    style={{ width: currentQuestion * 40.5 }}
-                ></div>
+                <div className="progress-bar" style={progressStyle}></div>
             </div>
             {showFinalResults ? (
                 /* 4- Final Results */
                 <div className="final-result">
                     <h1>Final Results</h1>
-                    <h2>{score} out of 10 correct</h2>
-                    <h2>Rank : ({(score / 10) * 100})</h2>
+                    {console.log(backendRank)}
+                    <h2>
+                        Rank :{" "}
+                        {Math.round((ranking.length / 30) * 100 * 100) / 100}
+                    </h2>
                     <button onClick={() => restartQuiz()}>Restart Quiz</button>
                 </div>
             ) : (

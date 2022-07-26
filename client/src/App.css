@@ -1,3 +1,9 @@
+#root{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
 .App {
     text-align: center;
     box-sizing: border-box;
@@ -7,9 +13,14 @@
     padding-top: 2rem;
     padding-bottom: 2rem;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
-        rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    width: 80%;
 }
-
+@media (min-width: 700px) {
+.App{
+    width:50%;
+}
+}
 .q-card {
     margin: 0 auto;
     padding: 1rem;
@@ -28,7 +39,12 @@ ul {
     padding-left: 20px;
     padding-right: 20px;
 }
-
+.score-mid-quiz{
+    color: darkcyan;
+}
+.score-after-quiz{
+    color: darkblue;
+}
 li {
     background-color: darkcyan;
     padding: 1rem;
@@ -99,22 +115,22 @@ li {
             text-decoration: none;
         }
     
-        .progress-bar-holder {
-            border-radius: 15px;
-            width: 65%;
-            height: 0.5em;
-            background-color: gray;
-            position: relative;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            margin-bottom: 20px;
-        }
-    
-        .progress-bar {
-            content: "";
-            height: 0.5em;
-            background-color: darkseagreen;
-            position: absolute;
-            border-radius: 15px;
-        }
+    .progress-bar-holder {
+        border-radius: 15px;
+        width: 65%;
+        height: 0.5em;
+        background-color: gray;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-bottom: 20px;
+    }
+
+    .progress-bar {
+        border-radius: 15px;
+        height: 0.5em;
+        background-color: darkseagreen;
+        position: relative;
+        margin-bottom: 20px;
+    }
